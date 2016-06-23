@@ -1,0 +1,46 @@
+﻿@model List<Models.EF.Province>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_layout.cshtml";
+}
+
+<div class="team">
+    <div class="container">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
+        <script>
+                            $("#AlertBox").removeClass("hide");
+                            $("#AlertBox").delay(3000).slideUp(1000);
+        </script>
+        <div class="team-top heading">
+            <h3>----------Hot Tour----------</h3>
+        </div>
+            
+        <div class="team-bottom">
+            @foreach (var item in Model)
+            {
+                
+                <div class="col-md-3 team-left wow bounceIn animated" data-wow-delay=".5s" style="visibility: visible; -webkit-animation-delay: .5s;">
+                    <a href="@Url.Action("ListTour", "TouristDestination", new { id = @item.ProvinceId })">
+                        <img src="/Data/images/@item.ProvinceAvatar" alt=""  style="width:255px;height:245.188px">
+                        <div class="captn">
+                            <h4>@item.ProvinceName</h4>
+                            <p>@(item.Description =="" ? "Updating..." : @item.Description )</p>
+                        </div>
+                        <div class="team-text">
+                            <h5>@item.ProvinceName</h5>
+                            <p>@(item.Description =="" ? "Updating..." : @item.Description)</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>

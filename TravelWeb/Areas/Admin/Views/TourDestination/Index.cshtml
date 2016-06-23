@@ -1,0 +1,66 @@
+﻿@model List<Models.ViewModel.TouristDestinationViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header{
+    Tourist Destination
+
+}
+
+
+<div>
+    <a href="@Url.Action("Create","TourDestination")" class="btn btn-outline btn-default">Create New</a>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>TouristDestinationId</th>
+                                <th>Tour Name</th>
+                                <th>Avatar Link</th>
+                                <th>Status</th>
+                                <th>City</th>
+                                <th>Display Order</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.TouristDestinationId">
+                                    <td>@item.TouristDestinationId</td>
+                                    <td>@item.TouristDestinationName</td>
+                                    <td>@item.TDAvartar</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.ProvinceName</td>
+                                    <td>@item.DisplayOrder</td>
+                                    <th>
+                                        <a href="">Detail</a>
+                                        <a href="#">Change</a>
+
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = item.TouristDestinationId }, new AjaxOptions
+                               {
+                                   Confirm = "Do you want to delete it?",
+                                   OnComplete = "$('#row_" + @item.TouristDestinationId + "').remove()",
+                                   HttpMethod = "Delete"
+
+                               })
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+         
+        </div>
+  

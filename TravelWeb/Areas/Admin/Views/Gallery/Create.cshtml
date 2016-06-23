@@ -1,0 +1,93 @@
+﻿@model Models.EF.Gallery
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Create New Image
+}
+
+@section jsfooter{
+    <script>
+        $('#selectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+            };
+            finder.popup();
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Create","Gallery",FormMethod.Post)){
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-lg-4">
+            
+                <fieldset>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Name)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Name,new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Link)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Link, new { @class = "form-control" ,@id="txtImage"})
+                        <a href="#" id="selectImage">Select Image</a>
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "form-danger" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DesciptionTitle)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.DesciptionTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DesciptionTitle)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Desciption)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Desciption, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Desciption)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Status)
+                    </div>
+                    <div class="editor-field">
+                        <select class="form-control" id="Status" name="Status">
+                            <option selected="selected" value="">True</option>
+                            <option value="false">False</option>
+                        </select>
+                        <span class="field-validation-valid" data-valmsg-for="Status" data-valmsg-replace="true"></span>
+                    </div>
+                    <br />
+                    <p>
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </p>
+                </fieldset>
+            </div>
+            
+        </div>
+
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+}

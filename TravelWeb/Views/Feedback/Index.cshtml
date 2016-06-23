@@ -1,0 +1,38 @@
+﻿@model Models.EF.Feedback
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_layout.cshtml";
+}
+
+<div class="contact">
+    <div class="container">
+
+        <div class="contact-top heading">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1gKxGZTU5a6PvF_V7RAaarEoQNlo" width="640" height="480"></iframe>
+        </div>
+        <!---728x90--->
+
+        <div class="contact-form heading">
+            <h3>Contact Form</h3>
+            <p>Enter your Infomation in here,please!</p>
+            <div class="contact-bottom">
+                
+                    @using(Html.BeginForm("Feedback", "Feedback", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name", @required = "required" })
+                        @Html.TextBoxFor(model => model.Email, new { @placeholder = "Email", @required = "required"})
+                        @Html.TextBoxFor(model => model.Phone, new { @placeholder = "Phone", @required = "required" })
+                        @Html.TextAreaFor(model => model.Message, new { @placeholder= "Message",@required="required" })
+                        <div class="submit-btn">
+                            <input type="submit" value="SUBMIT">
+                        </div>
+                    }
+                   
+            </div>
+        </div>
+    </div>
+</div>

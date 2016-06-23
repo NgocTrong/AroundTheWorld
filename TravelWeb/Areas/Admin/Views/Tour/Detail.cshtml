@@ -1,0 +1,88 @@
+﻿@model Models.EF.Tour
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    
+}
+
+@section header{
+   @Model.TourName
+}
+
+<fieldset>
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Model.TourName
+                </div>
+                <!-- .panel-heading -->
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Thông Tin Chi Tiết</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <label>Thời Gian Khởi Hành:</label>@Model.DepartureTime<br />
+                                    <label>Thời Gian Tour:</label>@Model.TourTime<br />
+                                    <label>Điểm Khởi Hành:</label>@Model.StartingPoint<br />
+                                    <label>Điểm Đến:</label>@Model.ArrivalPoint<br />
+                                    <label>Phương Tiện:</label>@Model.Transport<br />
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Giá Tour</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                   <b>@Model.Price VND</b> 
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Lịch Trình</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.Raw(Model.TimeTable)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+   
+  
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TourId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

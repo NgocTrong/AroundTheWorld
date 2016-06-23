@@ -1,0 +1,48 @@
+﻿@model List<Models.EF.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_layout.cshtml";
+}
+@section jsheader{
+    <script src="/Content/client/js/modernizr.custom.97074.js"></script>
+    <script src="/Content/client/js/jquery.chocolat.js"></script>
+    <link rel="stylesheet" href="/Content/client/css/chocolat.css" type="text/css" media="screen" charset="utf-8">
+    <!--light-box-files -->
+    <script type="text/javascript">
+        $(function () {
+            $('.gallery-bottom a').Chocolat();
+        });
+    </script>
+}
+<div class="gallery">
+    <div class="container">
+        <div class="gallery-top heading">
+            <h3>--------Beautiful Gallery--------</h3>
+        </div>
+        <div class="gallery-bottom grid">
+
+            <div class="g-1">
+                @foreach (var item in Model)
+                {
+                    
+                    <div class="col-md-3 g-left" style="padding:5px;">
+                        <a href="@item.Link" rel="title" class="b-link-stripe b-animate-go  thickbox">
+                            <figure class=" effect-oscar">
+                                <img src="@item.Link" alt="" style="width:281px;height:187px;" />
+                                <figcaption>
+                                    <h2>@item.DesciptionTitle</h2>
+                                    <p>@item.Desciption</p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                   
+                }
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

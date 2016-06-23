@@ -1,0 +1,139 @@
+﻿@model Models.EF.Contact
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BookingTour</title>
+    <link href="~/Content/admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body >
+    
+    <div class="row">
+        <div class="col-lg-1">
+           
+        </div>
+       
+         <div class="col-lg-3">
+             <a href="/Tour/index/@ViewBag.TourId" class="btn btn-warning" style="margin-top:20px;">Back to Tour</a>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("BookingTour", "Tour", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row " style="margin-top:20px;">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+                <div class="panel panel-success" style="height:650px;">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-search"></span>Your Information</div>
+                    <div class="panel-body">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TourId):@ViewBag.TourId
+                        </div>
+                        <div class="editor-field hide">
+                            @Html.TextBoxFor(model => model.TourId, new { @class = "form-control", @Value = @ViewBag.TourId })
+                            @Html.ValidationMessageFor(model => model.TourId)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Name)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Phone)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Email)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Address)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-success" style="height:650px;">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-search"></span>Tour Information</div>
+                    <div class="panel-body">
+
+                        <img src="@ViewBag.Image" width="378px" height="200px"><br />
+                        <strong style="color:#3c763d">@ViewBag.TourName</strong><br />
+                        <strong>Thời gian khởi hành</strong>:@ViewBag.DepartureTime
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Quantity)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control",@type ="number"})
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3">
+                <div class="panel panel-success" style="height: 650px;">
+
+                    <div class="panel-heading"><span class="glyphicon glyphicon-search"></span>Send to me
+                    </div>
+                    <div class="panel-body">
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                                @TempData["AlertMessage"]
+                            </div>
+                        }
+
+                        <script>
+                            $('#AlertBox').removeClass('hide');
+                            $('#AlertBox').delay(1000).slideUp(500);
+                        </script>
+
+                        <input type="submit" value="Contact" class="btn btn-success btn-lg " style="margin-left: 90px"/>
+                        <ul style="list-style: circle">
+                            Lưu ý:
+                            <li>Quý khách có thể thanh toán trước bằng thẻ tại đây.</li>
+                            <li> Công ty sẽ liên hệ với quý khách (qua email hoặc điện thoại) trong vòng 30 phút (T2-CN: 08:00 - 23:00) để xác nhận phòng và thời hạn thanh toán.</li>
+                            <li>Quý khách sẽ thanh toán (tại nhà, tại Công ty , chuyển khoản hay thẻ) sau khi có xác nhận còn phòng trống từ Công ty .</li>
+                            <li> Trường hợp Quý khách muốn xác nhận ngay, vui lòng liên hệ với Công ty theo Hotline:</li>
+                            <li><strong>Hà Nội</strong>: (04) 7109 9999 </li>
+                            <li><strong>Hồ Chí Minh</strong> : (08) 7309 9899</li>
+                            <li><img src="/Data/images/satisfaction.png" width="220px" height="140px"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    }
+</body>
+</html>

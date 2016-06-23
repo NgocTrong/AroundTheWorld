@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Agency-me me pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Humanity Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="/Content/client/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/Content/client/css/style.css" rel='stylesheet' type='text/css' />
+    <script src="/Content/client/js/jquery.min.js"></script>
+    <link href="/Content/client/cssbyme/mystyle.css" rel="stylesheet" />
+    
+    <script type="text/javascript" src="/Content/client/js/move-top.js"></script>
+    <script type="text/javascript" src="/Content/client/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    
+    <!--layout-gallery-->
+    @RenderSection("jsheader", required: false)
+</head>
+<body>
+<!--head-->
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=550110835194208";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <div class="head" id="home">
+        <div class="container">
+            <div class="head-top">
+                <div class="col-md-6 h-left">
+                    <p><span class="glyphicon glyphicon-phone-alt"></span>  <strong>+84-168-6546-504</strong> </p>
+                </div>
+                <div class="col-md-6 h-right">
+                    <ul>
+                        <li><a href="#"><span class="fb"> </span></a></li>
+                        <li><a href="#"><span class="twit"> </span></a></li>
+                        <li><a href="#"><span class="pin"> </span></a></li>
+                        <li><a href="#"><span class="rss"> </span></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--head-->
+    <!--header-->
+    <div class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <a href="@Url.Action("Index","Home")"><h1>Around Your Country</h1></a>
+                </div>
+                <div class="head-right">
+                    <div class="top-nav">
+                        <span class="menu"><img src="/Content/client/images/nav-icon.png" alt=""> </span>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Home")" class="active"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                            <li><a href="@Url.Action("Index","Info")"><span class="glyphicon glyphicon-info-sign"></span>Info</a></li>
+                            <li><a href="@Url.Action("Index","Gallery")"><span class="glyphicon glyphicon-picture"></span>Gallery</a></li>
+                            <li><a href="@Url.Action("Index","Feedback")"><span class="glyphicon glyphicon-envelope"></span>Contact</a></li>
+                            <div class="clearfix"> </div>
+                        </ul>
+                        <!--script-->
+                        <script>
+                            $("span.menu").click(function () {
+                                $(".top-nav ul").slideToggle(500, function () {
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+    <!--search-->
+    <div class="letter">
+        <div class="container">
+            <div class="letter-top heading">
+                <h3>WHERE WOULD YOU LIKE TO TRAVEL?</h3>
+                <div class="letter-bottom">
+                    @using (Html.BeginForm("Index", "TouristDestination", FormMethod.Get))
+                    {
+                        @Html.TextBox("SearchString")
+                        <input type="submit" value="Search">
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--render-body-->
+    @RenderBody()
+
+
+    <!--address-starts-->
+    <div class="address">
+        <div class="container">
+            <div class="address-top">
+                <div class="col-md-4 add-left">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    <p>
+                        <label>Around Your Country</label>
+                        48 Au Co-Da Nang
+                    </p>
+                </div>
+                <div class="col-md-4 add-left">
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                    <p>
+                        +122 235 5689 ,
+                        <br>+132 326 3695
+                    </p>
+                </div>
+                <div class="col-md-4 add-left">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <p><a href="mailto:example@email.com">ngoctrongitbkdn@gmail.com</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--address-end-->
+    <!--footer-starts-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="#"><h3>Around Your Country</h3></a>
+                <p>© 2016 Around Your Country. All Rights Reserved | Design by Po Peo </p>
+                <a href="#home" class="scroll"><img src="/Content/client/images/top-arrow.png" alt="" /></a>
+            </div>
+        </div>
+    </div>
+    <!--footer-end-->
+</body>
+</html>
+@RenderSection("jsfooter",required:false)

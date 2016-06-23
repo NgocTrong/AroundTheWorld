@@ -1,0 +1,57 @@
+﻿@model Models.EF.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Thêm Người dùng
+}
+
+@using (Html.BeginForm("Create","User",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-lg-3">
+             <fieldset>
+       <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.UserName, new { @class="form-control"})
+            @Html.ValidationMessageFor(model => model.UserName,"", new { @class="text-danger"})
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PassWord)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PassWord, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class="text-danger"})
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+                 <br />
+        <p>
+            <input type="submit" value="Create" class="btn btn-default"/> 
+        </p>
+    </fieldset>
+        </div>
+    </div>
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+}

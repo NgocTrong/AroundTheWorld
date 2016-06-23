@@ -1,0 +1,151 @@
+﻿@model Models.EF.Tour
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header{
+    Create Tour
+}
+
+@section jsfooter{
+    <script>
+    $('#btnSelectImage').on('click', function (e) {
+        e.preventDefault();
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (url) {
+            $('#txtImage').val(url);
+        };
+        finder.popup();
+    })
+    //ckediter
+    var editer = CKEDITOR.replace('txtContent', {
+        customConfig: '/Content/admin/plugin/ckeditor/config.js',
+    });
+
+</script>
+
+}
+@using (Html.BeginForm("Create", "Tour", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset style="width:720px">
+            <div class="editor-label">
+            @Html.LabelFor(model => model.TourName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TourName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TourName, "", new { @class="text-danger"})
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TouristDestinationId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TouristDestinationId, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TouristDestinationId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Image)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", @id = "txtImage" })
+            <a href="#"  id="btnSelectImage">Select Image</a>
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartureTime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DepartureTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TourTime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TourTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TourTime, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartingPoint)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.StartingPoint, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StartingPoint, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ArrivalPoint)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ArrivalPoint, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ArrivalPoint, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Transport)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Transport, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Transport, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeTable)
+        </div>
+        <div class="editor-field" style="width:838px;   " > 
+            @Html.TextAreaFor(model => model.TimeTable, new { @class = "form-control", @id = "txtContent" })
+            @Html.ValidationMessageFor(model => model.TimeTable, "", new { @class = "text-danger" })
+        </div>
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisplayOrder)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DisplayOrder, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Status, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+            
+        
+       
+        <br />
+        <p>
+            <input type="submit" value="Create" class="btn btn-default" style=" width:150px;"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts{
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "_layoutTour";
+    Layout = "~/Views/_layout.cshtml";
+
+}
+@RenderSection("thongbao", required: false)
+<div class="container" style="margin-top: 20px;">
+    <div class="col-lg-3">
+        <div class="panel panel-success">
+            <div class="panel-heading"><span class="glyphicon glyphicon-search"></span> SEARCH FILTER</div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">@Html.ActionLink("ALL TOUR", "Index", "TouristDestination", new { sortOrder = ViewBag.Price1 }, new { })</li>
+
+                    <li>@Html.ActionLink(" < 1.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price2 }, new { })</li>
+
+                    <li> @Html.ActionLink("2.000.000-4.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price3 }, new { })</li>
+
+                    <li> @Html.ActionLink("4.000.000-6.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price4 }, new { })</li>
+
+                    <li> @Html.ActionLink("6.000.000-8.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price5 }, new { })</li>
+
+                    <li> @Html.ActionLink("8.000.000-10.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price6 }, new { })</li>
+
+                    <li> @Html.ActionLink(" ABOVE 10.000.000 VND", "Index", "TouristDestination", new { sortOrder = ViewBag.Price7 }, new { })</li>
+
+                </ul>
+
+
+            </div>
+        </div>
+        <div>
+            @{
+                Html.RenderAction("ProvincePartial", "Home");
+            }
+        </div>
+       
+    </div>
+        <div id="content" class="col-lg-9">
+        @RenderBody()
+         <hr/>
+    </div>
+    <script>
+    jQuery(document).ready(function () {
+        $(':checkbox').click(function() {
+            var iDs = [];
+            $.each($("input[name='province']:checked"), function () {
+                iDs.push($(this).val());
+            });
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetData", "TouristDestination")',
+                dataType: "html",
+                traditional: true,
+                data: { values: iDs },
+                success: function (data) {
+                    $('#content').html(data);
+                }
+            });
+        });
+        });
+ </script>
+
+<div class="clearfix">
+</div>
+</div>

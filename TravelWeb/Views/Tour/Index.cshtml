@@ -1,0 +1,38 @@
+﻿@model Models.ViewModel.TourViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_layoutTour.cshtml";
+}
+
+<h2 style="color:#99cc99">@Model.TourName</h2>
+<hr/>
+<img src="@Model.Image" style="width:687px;height:400px;">
+<div>
+    <hr/>
+    <div class="col-md-8">
+        <ul>
+            <li><strong>Ngày Khởi hành: @Model.DepartureTime</strong></li>
+            <li><strong>Thời gian: @Model.TourTime</strong></li>
+            <li><strong>Điểm Khởi hành: @Model.StartingPoint</strong></li>
+            <li><strong>Phương tiện: @Model.Transport</strong></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+       
+        <div >
+            <h2>@(Model.Price.HasValue ? @Model.Price.Value.ToString("N0") + "đ" : "Contact")</h2>
+            <h3 class="b3"><a href="@Url.Action("BookingTour", "Tour", new { @id = @Model.TourId})" class="label label-success"><strong>BOOK TOUR</strong></a></h3>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<hr/>
+<div class="panel panel-success">
+    <div class="panel-heading">Lịch trình</div>
+    <div class="panel-body">
+        @Html.Raw((string.IsNullOrEmpty(@Model.TimeTable) ? "NO CONTENT IN HERE" : Model.TimeTable))
+    </div>
+</div>
+<div class="fb-like" data-href="http://localhost:53708/Tour/Index/@Model.TourId" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-comments" data-href="http://localhost:53708/Tour/Index/@Model.TourId" data-numposts="5"></div>
+
